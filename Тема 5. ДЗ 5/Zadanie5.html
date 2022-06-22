@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script>
+            let chislo = 452021;
+            let minDel;
+            let count = 0;
+            //Решение
+            while(count < 5){
+                chislo++;
+                for(let i = 2; i < chislo; i++){
+                        if (chislo % i == 0){
+                            minDel = i;
+                            break;
+                        };
+                    };
+                for(let i = (chislo-1); i > 2; i--){
+                    if (chislo % (i) == 0){
+                        maxDel = i;
+                        break;
+                        };
+                    };  
+                let M = minDel + maxDel;
+                if (M % 7 == 3) {
+                    count++;
+                    console.log(`Значение суммы делителей для числа ${chislo}, равен ${M}`);
+                }
+            
+            }
+
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

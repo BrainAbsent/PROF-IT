@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+            let massiv = [];
+            let vibor = +prompt("Введите 1 если хотите ввести массив в ручную:");
+            let chetMassiv = [];
+            switch (vibor){
+                case 1:
+                    for (let i = 0;i < 8;i++){
+                        x = +prompt(`Введите ${i} элемент массива.`);
+                        massiv.push(x);
+                    }
+                    break;
+                default:
+                    massiv = [0, 17, -42, 2, 7, 10, 12, 1560];
+                    break;
+            };
+            for (let massivElem of massiv){
+                if (massivElem % 2 == 0) chetMassiv.push(massivElem);
+            };
+            if(chetMassiv.length != 0) {
+                alert(`Из массива ${massiv}, был собран массив только с четными элементами ${chetMassiv}`);
+            } else {
+                alert(`В массиве ${massiv}, не нашлось четных элементов`);
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

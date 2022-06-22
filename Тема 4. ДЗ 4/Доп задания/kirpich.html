@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script>
+            let kirpA = Math.abs(prompt("Введите длину первого ребра кирпича:"));
+            let kirpB = Math.abs(prompt("Введите длину второго ребра кирпича:"));
+            let kirpC = Math.abs(prompt("Введите длину третьего ребра кирпича:"));
+            let holeX = Math.abs(prompt("Размер первой стороны отверстия:"));
+            let holeY = Math.abs(prompt("Размер второй стороны отверстия:"));
+            //Решение
+            let mess = "Заданный кирпич пройдет в заданное отверстие.";
+            if (holeX >= kirpA && holeY >= kirpB || holeX >= kirpB && holeY >= kirpA) {
+                 alert(mess);
+            } else if (holeX >= kirpB && holeY >= kirpC || holeX >= kirpC && holeY >= kirpB) {
+                alert(mess);
+            } else if (holeX >= kirpA && holeY >= kirpC || holeX >= kirpC && holeY >= kirpA) {
+                alert(mess);
+            } else {
+                alert("Заданный кирпич НЕ пройдет в заданное отверстие.");
+            };
+            
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script>
+            let A = Number(prompt("Введите A:"));
+            let B = Number(prompt("Введите B:"));
+            let C = Number(prompt("Введите C:"));
+            let naimenshee;
+            let srednee;
+            let naibolshee;
+            //Решение
+            if (A < B && A < C){
+                naimenshee = A;
+                if (B < C){
+                    srednee = B;
+                    naibolshee = C;
+                } else {
+                    srednee = C;
+                    naibolshee = B;
+                }
+            } else if (A > B && A > C){
+                naibolshee = A;
+                if (B < C){
+                    naimenshee = B;
+                    srednee = C;
+                } else {
+                    naimenshee = C;
+                    srednee = B;
+                }
+            } else {
+                srednee = A;
+                if (B < C){
+                    naimenshee = B;
+                    naibolshee = C;
+                } else {
+                    naimenshee = C;
+                    naibolshee = B;
+                }
+            }
+            
+            let first = (naibolshee - naimenshee) * 2;
+            let second = naimenshee * srednee;
+
+            if (first > second){
+                alert(`Удвоенная разность большего и меньшего числа ${first} больше произведение меньшего и среднего ${second}`);
+            } else {
+                alert(`Произведение меньшего и среднего числа ${second} больше удвоенная разность большего и меньшего ${first}`);
+            }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

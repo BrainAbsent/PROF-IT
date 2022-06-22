@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script>
+            let baseS = Number(prompt("Введите площадь основания конуса:",""));
+            //Решение
+            let baseRadius = Math.sqrt(baseS / 3.14); //Радиус основания
+            let coneH = baseRadius * 2; //Высота конуса равна диаметру
+            let coneSideS = 3.14 * baseRadius * Math.sqrt(baseRadius**2 + coneH**2); //Площадь боковой поверхности
+            let coneS = coneSideS + baseS; //Общая площадь
+            let coneV = (1 / 3) * baseS * coneH; //Объем конуса
+            alert(`Объем конуса с заданной площадью основания ${coneV.toFixed(2)}`);
+            alert(`Площадь конуса с заданной площадью основания ${coneS.toFixed(2)}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

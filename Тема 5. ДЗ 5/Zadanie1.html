@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script>
+            let N = +prompt("Результат должен быть больше скольки:");
+            let x = +prompt("Введите X:");
+            let i = 2;
+            let s = x;
+            //Решение
+            do {
+                s += (x**i + i) / (x + (i - 1));
+                i++;
+            } while (s <= N);
+            alert(`Сумма выражения = ${s}, становится больше заданной на ${i-2} шаге`);  
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

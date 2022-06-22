@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <script>
+            let pictureHight = Number(prompt("Введите высоту изображения:",""));
+            let pictureWidth = Number(prompt("Введите ширину изображения:",""));
+            //Решение
+            let pixAmount = pictureHight * pictureWidth //Общее кол-во пикселей
+            let onePixMem = 6; // 64 цвета это 2**6 => 6 бит на пиксель
+            let memAmount = (pixAmount * onePixMem) / 8 / 1024;
+            alert(`Изображение высотой ${pictureHight} и шириной ${pictureWidth}, будет занимать ${Math.floor(memAmount)}Кбайт`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

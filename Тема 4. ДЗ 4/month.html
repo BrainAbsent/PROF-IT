@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script>
+            let monthNumber = Number(prompt("Введите номер месяца:",""));
+            if (isNaN(monthNumber)) {
+                alert("Вы ввели не число");
+        } else if( monthNumber < 1 || monthNumber > 12){
+            alert(`Введено не корректное чилсо ${monthNumber}, введеное число должно быть в диапозоне от 1 до 12`);
+        } else {
+            switch(monthNumber){
+                case 1:
+                    alert("Январь");
+                        break;
+                case 2:
+                    alert("Февраль");
+                        break;
+                case 3:
+                    alert("Март");
+                        break;
+                case 4:
+                    alert("Апрель");
+                        break;
+                case 5:
+                    alert("Май");
+                        break;
+                case 6:
+                    alert("Июнь");
+                        break;
+                case 7:
+                    alert("Июль");
+                        break;
+                case 8:
+                    alert("Август");
+                        break;
+                case 9:
+                    alert("Сентябрь");
+                        break;
+                case 10:
+                    alert("Октябрь");
+                        break;
+                case 11:
+                    alert("Ноябрь");
+                        break;
+                case 12:
+                    alert("Декабрь");
+                        break;                
+            };
+        }
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

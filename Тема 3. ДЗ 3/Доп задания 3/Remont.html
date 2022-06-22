@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script>
+            let roomWidth = prompt("Введите ширину стен в комнате:","");
+            let roomHeight = prompt("Введите высоту стен в комнате:","");
+            let doorWidth = prompt("Введите ширину двери:","");
+            let doorHeight = prompt("Введите высоту двери:","");
+            let windowWidth = prompt("Введите ширину окон:","");
+            let windowHeight = prompt("Введите высоту окон:","");
+            let windowAmount = prompt("Количество окон:","");
+            //Решение
+            let roomS = roomHeight * roomWidth * 4; //Площадь стен в комнате без окон и дверей
+            let finalS = roomS - (doorHeight * doorWidth) - (windowHeight * windowWidth * windowAmount); //Площадь с окнами и дверью
+            let ruloni = finalS / (prompt("Ширина рулона обоев:","") * prompt("Длина рулона обоев:",""));
+            alert(`Площадь стен в комнате учитывая дверь и окна: ${finalS}`);
+            alert(`Количество рулонов обоев нужных для покрытия стен: ${Math.ceil(ruloni)}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

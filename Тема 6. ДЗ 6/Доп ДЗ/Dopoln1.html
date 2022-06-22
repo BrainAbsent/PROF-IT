@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script>
+            let N = +prompt("Введите N:");
+            let T = [];
+            let E = [];
+            let tT = [];
+            //Решение
+            //Создаем треугольно квадратную матрицу Т порядка N
+            for (let a = 0; a < N; a++){
+                T[a] = new Array();
+                for (let b = 0; b < N; b++){
+                    if (a >= 1 && b < a) {
+                        T[a][b] = 0;
+                    } else {
+                        T[a][b] = Math.trunc(Math.random() * 10) + 1; //Плюс 1 чтобы число не равнялось 0
+                    };
+                };
+            };
+            //Создаем транспонированную матрицу T
+            for (let a = 0; a < N; a++){
+                tT[a] = new Array();
+                for(let b = 0; b < N; b++){
+                    tT[a][b] = T[b][a];
+                }
+            }
+            //Создаем единичную матрицу E порядка N
+            for (let a = 0; a < N; a++){
+                E[a] = new Array();
+                for (let b = 0; b < N; b++){
+                    if (a == b){
+                        E[a][b] = 1;
+                    } else {
+                        E[a][b] = 0;
+                    };
+                };
+            };
+            
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

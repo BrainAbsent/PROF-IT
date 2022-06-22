@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script>
+            let massiv = [];
+            let vibor = +prompt("Введите 1 если хотите ввести массив в ручную:");
+            let x;
+            let massivNol = [];
+            switch (vibor){
+                case 1:
+                    for (let i = 0;i < 8;i++){
+                        x = +prompt(`Введите ${i} элемент массива.`);
+                        massiv.push(x);
+                    }
+                    break;
+                default:
+                    massiv = [0, 17, -42, 2, 7, 0, 13, 0];
+                    break;
+            };
+            //Решение
+            for (let i = 0;i < massiv.length; i++){
+                if (massiv[i] == 0) massivNol.push(i);
+            }
+            alert(`Номера нулевых елементов в массиве ${massiv}, помещены в массив ${massivNol}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script>
+            let A = +prompt("Введите число:");
+            let k = 2;
+            let n = 3;
+            let sum = 1;
+            let drob;
+            if(isNaN(A)){
+                alert("Введите число пжлста, то что вы ввели почти точно не число");
+            } else{
+                while(A > sum){
+                    drob = k/n;
+                    sum += drob;
+                    k++;
+                    n += 2;                    
+                }
+                if (n > 3) n -= 2;
+                alert(`Введеное число ${A} меньше последовательности когда n достигает ${n}`);
+            };
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

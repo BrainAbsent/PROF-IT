@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <script>
+            let P = [];
+            let Q = [];
+            let PP = [];
+            let QQ = [];
+            let P1 = [];
+            let Q1 = [];
+            let N = +prompt("Введите четное N");
+            let M = +prompt("Введите четное M");
+            let diagP = [];//Массивы для главных диагоналей
+            let diagQ = [];//Массивы для главных диагоналей
+            //Проверка на четность
+            while((N % 2) != 0 || (M % 2) != 0){
+                alert("Числа должны быть четными");
+                N = +prompt("Введите четное N");
+                M = +prompt("Введите четное M");
+            };
+            //Генерю матрицы
+            for(let a = 0; a < M; a++){
+                P[a] = new Array();
+                for(let b = 0; b < M; b++){
+                    P[a][b] = Math.floor(Math.random() * 10);
+                    if(a == b){
+                        diagP.push(P[a][b]);
+                    };  
+                };
+            };
+            for(let a = 0; a < N; a++){
+                Q[a] = new Array();
+                for(let b = 0; b < N; b++){
+                    Q[a][b] = Math.floor(Math.random() * 10);  
+                    if(a == b){
+                        diagQ.push(Q[a][b]);
+                    }
+                };
+            };
+            //Функция сортировки
+            function sortirovka(massiv){
+                for(let i = 1; i < massiv.length; i++){ 
+                    x = massiv[i];
+                     leftB = 0;
+                    rightB = i - 1;
+                    while (leftB <= rightB){
+                        mid = Math.trunc((leftB + rightB)/2);
+                        if (x < massiv[mid]) {
+                            rightB = mid - 1;
+                        } else {
+                            leftB = mid + 1;
+                        };
+                    };
+                    for(let j = i - 1; j >= leftB; j--){ 
+                        massiv[j + 1] = massiv[j];
+                    };
+                        massiv[leftB] = x;            
+                };
+                return massiv.reverse();
+            };
+            //Функция копирует матрицу
+            function copyMatrix(massivNew, massivOrig){
+                for(let a = 0; a < massivOrig.length;a++){
+                    massivNew[a] = massivOrig[a].slice();
+                };
+            };
+            //Функция вставки
+            function vstavka(massiv, diag){
+                let a = 0;
+                let b = 0;
+                while(a < massiv.length){
+                    massiv[a][b] = diag[a];
+                    a++;
+                    b++;
+                };
+            };
+
+            copyMatrix(PP, P);
+            copyMatrix(QQ, Q);
+            sortirovka(diagP);
+            sortirovka(diagQ);
+            vstavka(PP, diagP);
+            vstavka(QQ, diagQ);
+
+            //Получение P1 
+            for(let a = 0; a < M; a++){
+                P1[a] = new Array();
+                multiRes = 1;
+                for(let i = 0; i < M; i++){
+                    multiRes *= P[a][i];
+                };//Перемножили все элементы одной строчки
+                for(let b = 0; b < M; b++){
+                    P1[a][b] = PP[a][b] + multiRes;
+                };
+            };
+
+            //Получение Q1
+            for(let b = 0; b < N; b++){
+                let i = 0;
+                let minStolb = Q[i][b];
+                while(i < Q.length){
+                    if(Q[i][b] < minStolb) minStolb = Q[i][b];
+                    i++;
+                };//Нахождение минимального элемента в столбце Q
+                for(let a = 0; a < N; a++){
+                    if(Q1[a] == undefined) Q1[a] = new Array();
+                    Q1[a][b] = QQ[a][b] + minStolb;
+                };
+            };
+
+            console.log(`Матрица P`);
+            console.log(P);
+            console.log(`Матрица PP`);
+            console.log(PP);
+            console.log(`Матрица Q`);
+            console.log(Q);
+            console.log(`Матрица QQ`);
+            console.log(QQ);
+            //Вывод на страницу
+            document.write("P1 <br>");
+            for(let a = 0; a < M; a++){
+                for(let b = 0; b < M; b++){
+                    document.write(P1[a][b] + " ");
+                };
+                document.write("<br>");
+            };
+            document.write("<br> Q1 <br>");
+            for(let a = 0; a < N; a++){
+                for(let b = 0; b < N; b++){
+                    document.write(Q1[a][b] + " ");
+                };
+                document.write("<br>");
+            };
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

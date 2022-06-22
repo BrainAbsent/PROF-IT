@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script>
+            let N = +prompt("Введите число:");
+            let i = 2;
+            let x = Math.sqrt(i);
+            //Решение
+            while(x <= N){
+                i++;
+                x += i;
+                x = Math.sqrt(x);
+            };
+            alert(`Рузельтат выражения становится больше ${N} на ${i-1} шагу цикла и равен ${x}`);            
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

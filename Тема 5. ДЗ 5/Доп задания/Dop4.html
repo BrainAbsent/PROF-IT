@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            let startDiap = 3672;
+            let endDiap = 9117;
+            let count = 0;
+            let sum = 0;
+            //Решение
+            for(let i = startDiap; i < endDiap; i++){
+                if ((i % 3) == 2 && (i % 5) == 4) {
+                    count++;
+                    sum += i;
+                };
+            } 
+            alert(`Количество чисел которые подходят под условие = ${count}, сумма этих чисел ${sum}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

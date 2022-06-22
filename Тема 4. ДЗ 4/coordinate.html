@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script>
+            let xA = Number(prompt("Введите значение Xa:"));
+            let yA = Number(prompt("Введите значение Ya:"));
+            let xB = Number(prompt("Введите значение Xb:"));
+            let yB = Number(prompt("Введите значение Yb:"));
+            let xC = Number(prompt("Введите значение Xc:"));
+            let yC = Number(prompt("Введите значение Yc:"));
+            //Решение 
+            //Расстояние от точки до начала координат
+            let OA = Math.sqrt(xA**2 + yA**2); 
+            let OB = Math.sqrt(xB**2 + yB**2); 
+            console.log(OA);
+            console.log(OB);
+            //Расстояние между точками
+            let AC = Math.sqrt(((xC - xA) ** 2) + ((yC - yA) ** 2));
+            let BC = Math.sqrt(((xC - xB) ** 2) + ((yC - yB) ** 2));
+            console.log(AC);
+            console.log(BC);
+            //Поиск площадей
+            let circleS = Math.PI * OA**2;
+            let squareS = OB * OB;
+            let rectS = AC * BC;
+            console.log(circleS);
+            console.log(squareS);
+            console.log(rectS);
+            //Сравнение
+            if (circleS > squareS) {
+                if (circleS > rectS) {
+                    alert(`Наибольшей будет площадь круга с радиусом OA = ${circleS}`);
+                } else {
+                    alert(`Наибольшим будет прямоугольник со сторонами AC и BC = ${rectS}`);
+                }
+            } else if (squareS > rectS) {
+                alert(`Наибольшим будет квадрат со стороной OB = ${squareS}`);
+            } else {
+                alert(`Наибольшим будет прямоугольник со сторонами AC и BC = ${rectS}`);
+            }
+            </script>
+    </head>
+    <body>
+
+    </body>
+</html>

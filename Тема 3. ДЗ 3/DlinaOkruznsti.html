@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script>
+            let dlinaOkr = Number(prompt("Ведите длину окружности:", ""));
+            //Решение
+            let radius = dlinaOkr / (2 * 3.14); //Радиус круга
+            let circleS = 3.14 * radius**2; //Площадь круга
+            let squareSide = Math.sqrt(circleS); //Сторона квадрата
+            alert(`Радиус круга с заданной длинной окружности ${radius.toFixed(4)}`);
+            alert(`Площадь круга с заданной длинной окружности ${circleS.toFixed(4)}`);
+            alert(`Сторона квадрата, площадь которого равна площади круга ${squareSide.toFixed(4)}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

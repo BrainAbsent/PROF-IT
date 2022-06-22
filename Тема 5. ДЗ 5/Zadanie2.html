@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script>
+            let E = +prompt("Введите сколько раз последовательность должна сложиться:");
+            let k = 1;
+            let s = 0;
+            //Решение
+            while (k <= E) {
+                s += (4 * k) / (k**2 + 8 * Math.sqrt(k));
+                k++;
+            }
+            alert(s);
+            alert(k);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

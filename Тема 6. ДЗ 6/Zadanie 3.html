@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script>
+            let massiv = [];
+            let vibor = +prompt("Введите 1 если хотите ввести массив в ручную:");
+            let minNum; // Порядковый минимального
+            let maxNum; // Порядковый максимального
+            let kol = []; // Кол-во элементов между мин и макс
+            let proizved = 1; //Произведение элементов
+            //Решение
+            switch (vibor){
+                case 1:
+                    for (let i = 0;i < 8;i++){
+                        x = +prompt(`Введите ${i} элемент массива.`);
+                        massiv.push(x);
+                    }
+                    break;
+                default:
+                    massiv = [17, 100, 24, 7, 13, 2];
+                    break;
+            };
+            //Нахождение минимального и максимального
+            let minMassiv = massiv[0];
+            let maxMassiv = massiv[0];
+            for (let i = 1; i < massiv.length; i++){
+                if(massiv[i] < minMassiv) {
+                    minMassiv = massiv[i];
+                    minNum = i;
+                } else if (massiv[i] > maxMassiv) {
+                    maxMassiv = massiv[i];
+                    maxNum = i;
+                };
+            };
+            
+            if (minNum > maxNum){
+                kol = massiv.slice(maxNum+1, minNum);
+            } else if (minMassiv < maxMassiv){
+                kol = massiv.slice(minNum+1, maxNum);
+            } else {
+                proizved = 0;
+            };
+
+            kol.forEach((massElem) => {
+                proizved *= massElem;
+            });
+            alert(`В массиве ${massiv} между мин и макс значением ${kol.length} элементов, их произведение равно ${proizved}`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

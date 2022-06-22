@@ -1,0 +1,47 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+    <script>
+        let massiv = [];
+        let vibor = +prompt("Введите 1 если хотите ввести массив в ручную:");
+        let x;
+        let mid;
+        let leftB;
+        let rightB;
+        switch (vibor){
+            case 1:
+                for (let i = 0;i < 8;i++){
+                    x = +prompt(`Введите ${i} элемент массива.`);
+                    massiv.push(x);
+                }
+                break;
+            default:
+                massiv = [2, 3, 42, 9, 8, 11, 13, 68];
+                break;
+        }
+
+        for(let i = 1; i < massiv.length; i++){ 
+            x = massiv[i];
+            leftB = 0;
+            rightB = i - 1;
+            while (leftB <= rightB){
+                mid = Math.trunc((leftB + rightB)/2);
+                if (x < massiv[mid]) {
+                    rightB = mid - 1;
+                } else {
+                    leftB = mid + 1;
+                }
+
+            }
+            for(let j = i - 1; j >= leftB; j--){ 
+                massiv[j + 1] = massiv[j];
+            };
+            massiv[leftB] = x;            
+        };
+        massiv = massiv.reverse();
+        alert(`Отсортированный массив ${massiv}`);
+    </script>
+    </body>
+</html>

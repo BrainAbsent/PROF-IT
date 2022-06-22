@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script>
+            let N = +prompt("Введите число:");
+            let i = 0.1;
+            let x = 1;
+            let s = (1 + Math.sin(i));
+            let count = 0;
+            //Решение
+            while (x <= N) {
+                i += 0.1;
+                x *= s;  
+                count++;
+            };
+            alert(`Произведение последовательности больше заданного числа и равно ${x}, на ${count} шаге`);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
