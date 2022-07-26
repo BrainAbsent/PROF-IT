@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            class Country {
+                constructor (name, riders) {
+                    this.name = name,
+                    this.score = 0,
+                    this.totalScore = 0,
+                    this.riders = riders,
+                    this.overAllRating = 0
+                }
+
+                sortByTime () {
+                    this.riders.sort(function (a,b){
+                        return a.time - b.time;
+                    });
+                } //Сортировка гонщиков страны по времени
+
+                sortByPersonalBest () {
+                    this.riders.sort(function (a,b){
+                        return a.personalBest - b.personalBest;
+                    });
+                } //Сортировка гонщиков страны по личному лучшему времени за круг
+            }; //Класс стран
+
+            class Rider {
+                constructor (number, name, surname, rating) {
+                    this.number = number,
+                    this.name = name,
+                    this.surname = surname,
+                    this.rating = rating,
+                    this.time = 0,
+                    this.personalBest = 240
+                }
+            }; //Класс гонщиков
+
+            class RiderGen {
+                firstNames = ["Павел", "Александр", "Алексей", "Виктор", "Юрий", "Евгений", "Кирилл", "Влад", "Генри", "Фейн", "Нейтан", "Янг", "Кристиан", "Лейк"];
+                lastNames = ["Паксеев", "Жарков", "Лукьянов", "Бахаев", "Новиков", "Аникеев", "Валанов", "Кореневский", "Гарсия", "Хьюз", "Моррисон", "Блэк", "Валенто", "Целесте"];
+                number = 0;
+                rating = 0;
+
+                getRandomFromArray (array) {
+                    return array[Math.floor(Math.random() * array.length)]
+                }
+
+                getRandomNumber (max) {
+                    return Math.ceil(Math.random() * max);
+                }
+
+                generateRider () {
+                    return new Rider(
+                        this.getRandomNumber(100),
+                        this.getRandomFromArray(this.firstNames),
+                        this.getRandomFromArray(this.lastNames),
+                        this.getRandomNumber(10),
+                        this.time,
+                        this.personalBest)
+                }
+            }; //Класс который отвечает за рандомную генерацию гонщиков
+
+            function givePoints(array, riderIndex){
+                array.sort(function (a, b){
+                    if (a.riders[riderIndex].time == b.riders[riderIndex].time){
+                        a.sortByPersonalBest();
+                        b.sortByPersonalBest();
+                        return a.riders[0].personalBest - b.riders[0].personalBest;
+                    };
+                    return a.riders[riderIndex].time - b.riders[riderIndex].time;
+                });
+                for (let item of array){
+                    item.score += array.indexOf(item) + 1;
+                    item.totalScore += array.indexOf(item) + 1;
+                };
+            }; //Процедура сортировки массива Стран по возрастанию времени заданного гонщика(riderIndex) и дает очки в зависимости от места
+
+            function startLap(array, riderInd, step){
+                for (let i = 1; i <= step; i++) {
+                            for (let item of array) {
+                                for (let racer of item.riders) {
+                                    let seconds = (Math.floor(Math.random() * (240 - 60)) + 60) / 60; //Генерируем время в секундах от 60 до 240
+                                    racer.time = seconds.toFixed(2); 
+                                    if (racer.time < racer.personalBest) racer.personalBest = racer.time; //Устанавливаем лучшее время в личном зачете 
+                                };
+                            };
+                            for (let item of array) {
+                                item.sortByTime(); //Сортируем гонщиков по времени фазы
+                            };
+                            givePoints(array, riderInd); //Раздаем странам очки
+                        };
+            };
+
+            function writeResult(array, lap){
+                sortWinner(array, lap)
+                let block = document.createElement('div');
+                block.innerHTML = `<b>Результаты ${lap} круга:</b><br>`;
+                for (let i = 0; i < array.length; i++){
+                    array[i].sortByPersonalBest();
+                    let minutes = Math.floor(array[i].riders[0].personalBest);
+                    let seconds = Math.floor(((array[i].riders[0].personalBest % 1).toFixed(2)) * 100);
+                    seconds = String(seconds);
+                    if (seconds.length < 2) { 
+                        seconds = `0${seconds}`;
+                    }; // Для более привычного восприятия добавляет 0 если число секунд не двузначное
+                    block.innerHTML += `${i + 1} место! ${array[i].name}:<br>Сумма мест на этапах: ${array[i].score}<br>`
+                    if (lap == 1){
+                        block.innerHTML += `Лучший результат в стране: ${array[i].riders[0].name} ${array[i].riders[0].surname} - ${minutes}:${seconds} <br><br>`;
+                    } else {
+                        block.innerHTML += `Средний рейтинг гонщиков страны: ${array[i].overAllRating}<br><br>`;
+                    };
+                };
+                document.body.appendChild(block);
+            };
+
+            function sortWinner(array, lap){
+                if(lap != 1){
+                    for(let i = 0; i < array.length; i++){
+                        for(let item of array[i].riders){
+                            array[i].overAllRating += item.rating;
+                        };
+                        array[i].overAllRating /= array[i].riders.length;
+                    };
+                    array.sort( function (a, b) {
+                        if (a.score == b.score){
+                            return b.overAllRating - a.overAllRating;
+                        }
+                        return a.score - b.score;
+                    });
+                } else {
+                    array.sort( function (a, b) {
+                        if (a.score == b.score){
+                            a.sortByPersonalBest();
+                            b.sortByPersonalBest();
+                            return a.riders[0].personalBest - b.riders[0].personalBest;
+                        }
+                        return a.score - b.score;
+                    });
+                }
+
+            }; //Функция сортировки стран в зависимости от занятых мест и круга
+
+            const riderGen = new RiderGen(); //Задаем сам генератор
+
+            let countries = [
+                new Country("Россия", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()]), 
+                new Country("Англия", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()]), 
+                new Country("Италия", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()]), 
+                new Country("Франция", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()]),
+                new Country("Германия", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()]),
+                new Country("Япония", [riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider(),riderGen.generateRider()])
+            ]; //Массив стран с заранее сгенерированными гонщиками
+
+            let phase = prompt("Введите кол-во этапов первого круга:")
+            if (phase <= 0 || isNaN(phase)) {
+                alert("Кол-во этапов должно быть числом которое больше 0."); //Проверка ввода кол-ва этапов
+            } else {
+                startLap(countries, 3, phase);
+                document.write("<h1><b>Результаты:</b></h1><br>");
+                writeResult(countries, 1);
+                
+                for (let item of countries){
+                    item.score = 0;
+                    for (let rider of item.riders){
+                        rider.personalBest = 240;
+                    };
+                };
+
+                countries.splice(4,countries.length - 4);
+                
+                setTimeout(() => {
+                    const willStartSecondLap = confirm("Начать второй круг?");
+                    if (!willStartSecondLap){
+                        alert("Вы отменили второй круг гонок. Все недовольны, гонщики разбежались.");
+                        return;
+                    };
+
+                    startLap(countries, 0, 2);
+
+                    writeResult(countries, 2);
+
+                    countries.sort(function (a, b) {
+                        return a.totalScore - b.totalScore;
+                    });
+
+                    setTimeout(() => {
+                        alert(`Победитель гонок ${countries[0].name}!`)
+                    }, 1000);
+                    
+                }, 1000);
+            
+                
+            };
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
